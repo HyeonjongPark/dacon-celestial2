@@ -1,4 +1,6 @@
 
+
+
 # h2o
 
 #h2o.init()
@@ -134,4 +136,6 @@ h2o.predictions = h2o.predictions[,c("predict",col)]
 h2o.predictions
 
 confusionMatrix(h2o.predictions$predict, valid$type) # 0.848
+
+
 

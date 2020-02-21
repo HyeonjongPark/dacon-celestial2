@@ -1,4 +1,5 @@
 
+
 ## decision tree
 set.seed(2)
 
@@ -65,11 +66,7 @@ rf_result_proba = as.data.frame(rf_result_proba)
 rf_result_proba$id = o_test$id
 rf_result_proba = rf_result_proba[,c(ncol(rf_result_proba),1:(ncol(rf_result_proba)-1))]
 
-<<<<<<< HEAD
 fwrite(rf_result_proba, "./06submission/rf-pred7.csv")
-=======
-fwrite(rf_result_proba, "./06submission/rf-pred1.csv")
->>>>>>> d4f922b66b70ced14e68ebb0a71c495603a44b50
 
 
 
@@ -96,5 +93,4 @@ rf_default <- train(type~. ,
                     tuneGrid=tunegrid, 
                     trControl=control)
 print(rf_default)
-
 
