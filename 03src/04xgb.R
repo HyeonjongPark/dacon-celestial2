@@ -16,7 +16,7 @@ parameters <- list(
   eta                = 0.03,              
   gamma              = 0.7,                 
   max_depth          = 10,                
-  min_child_weight   = 2,            
+  min_child_weight   = 0.5,            
   subsample          = .8,                 
   colsample_bytree   = .8,                
   colsample_bylevel  = 1,          
@@ -98,7 +98,7 @@ xgb_pred_proba$id = o_test$id
 
 xgb_pred_proba = xgb_pred_proba[,c(20,1:19)]
 
-fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred11.csv")
+fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred12.csv")
 
 
 
@@ -118,7 +118,7 @@ searchGridSubCol <- expand.grid(subsample = c(0.5, 0.7, 0.9),
                                 eta = c(0.03, 0.05, 0.1)
 )
 
-ntrees <- 150
+ntrees <- 500
 
 system.time(
   rmseErrorsHyperparameters <- apply(searchGridSubCol, 1, function(parameterList){
