@@ -1,3 +1,4 @@
+
 # xgboost
 
 data.train <- xgb.DMatrix(data = data.matrix(train[, !colnames(train) %in% c("id","type")]), label = train$type)
@@ -23,8 +24,8 @@ parameters <- list(
   #alpha              = 0,       # default = 0 
   
   # Task Parameters
-  objective          = "multi:softmax",   # default = "reg:linear" , "softmax", softprob
-  eval_metric        = "merror",          # merror , logloss
+  objective          = "multi:softprob",   # default = "reg:linear" , "softmax", softprob
+  eval_metric        = "logloss",          # merror , logloss
   num_class          = length(unique(train$type)) + 1, # 클래스 갯수
   seed               = 1,                 # reproducability seed
   tree_method        = "hist",
@@ -36,11 +37,7 @@ parameters <- list(
 
 parameters
 
-<<<<<<< HEAD
 xgb_model <- xgb.train(parameters, data.train, nrounds = 300)
-=======
-xgb_model <- xgb.train(parameters, data.train, nrounds = 500)
->>>>>>> d4f922b66b70ced14e68ebb0a71c495603a44b50
 
 
 xgb_pred <- predict(xgb_model, data.valid)
@@ -50,14 +47,9 @@ confusionMatrix(as.factor(xgb_pred), as.factor(as.integer(valid$type))) # 0.872
 xgb.importance(colnames(train[, !colnames(valid) %in% c("type")]), model = xgb_model) %>% kable()
 
 xgb.imp <- xgb.importance(colnames(train[, !colnames(valid) %in% c("type","id")]), model = xgb_model)
-<<<<<<< HEAD
 xgb.imp %>% head(50)
 xgb.ggplot.importance(importance_matrix = xgb.imp, 50)
 
-=======
-
-xgb.ggplot.importance(importance_matrix = xgb.imp)
->>>>>>> d4f922b66b70ced14e68ebb0a71c495603a44b50
 
 
 
@@ -65,7 +57,6 @@ xgb.ggplot.importance(importance_matrix = xgb.imp)
 
 
 
-<<<<<<< HEAD
 ### feature importance 에 따라 column selection           -  검증용 30번 round결과 87 -> 88
 
 xgb.imp_col = xgb.imp$Feature %>% head(50)
@@ -97,10 +88,6 @@ valid = new_valid
 
 xgb_model <- xgb.train(parameters, data.train, nrounds = 300)
 
-=======
-# softpob으로 설정하고 matrix 아래 코드를 실행해주면 클래스별로 prob을 확인할 수 있다.
-
->>>>>>> d4f922b66b70ced14e68ebb0a71c495603a44b50
 xgb_pred <- predict(xgb_model, data.valid)
 xgb_pred_proba = matrix(xgb_pred, ncol = (length(unique(train$type)) + 1) , byrow = T)[,-1] 
 colnames(xgb_pred_proba) = col
@@ -111,11 +98,7 @@ xgb_pred_proba$id = o_test$id
 
 xgb_pred_proba = xgb_pred_proba[,c(20,1:19)]
 
-<<<<<<< HEAD
 fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred11.csv")
-=======
-fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred9.csv")
->>>>>>> d4f922b66b70ced14e68ebb0a71c495603a44b50
 
 
 
@@ -164,3 +147,5 @@ output <- as.data.frame(t(rmseErrorsHyperparameters))
 varnames <- c("TestRMSE", "TrainRMSE", "SubSampRate", "ColSampRate", "Depth", "eta", "currentMinChild")
 names(output) <- varnames
 output
+
+
