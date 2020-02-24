@@ -37,7 +37,7 @@ parameters <- list(
 
 parameters
 
-xgb_model <- xgb.train(parameters, data.train, nrounds = 300)
+xgb_model <- xgb.train(parameters, data.train, nrounds = 1000)
 
 
 xgb_pred <- predict(xgb_model, data.valid)
@@ -70,7 +70,7 @@ valid = new_valid
 
 ### feature importance 에 따라 column selection           -  제출용
 
-xgb.imp_col = xgb.imp$Feature %>% head(50)
+xgb.imp_col = xgb.imp$Feature %>% head(70)
 new_train = train[,c("id",xgb.imp_col,"type")]
 new_valid = valid[,c("id",xgb.imp_col)]
 
@@ -98,7 +98,7 @@ xgb_pred_proba$id = o_test$id
 
 xgb_pred_proba = xgb_pred_proba[,c(20,1:19)]
 
-fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred12.csv")
+fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred13.csv")
 
 
 

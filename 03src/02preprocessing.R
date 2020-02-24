@@ -152,65 +152,6 @@ train %>% colnames() %>% tail(99)
 
 
 
-# 
-# 
-# 
-# o_train = train3
-# 
-# o_train %>% select(-type) %>% cor() %>% 
-#   corrplot.mixed(upper = "ellipse", tl.cex=.8, tl.pos = 'lt', number.cex = .8)
-# 
-# o_train$type = factor(o_train$type, level = col)
-# 
-# 
-# # o_train %>% select(-type) %>%
-# #   corrgram(lower.panel=panel.shade, upper.panel=panel.ellipse)
-# 
-# 
-# 
-# set.seed(1)
-# inTrain <- createDataPartition(o_train$type, p=.9, list = F)
-# 
-# 
-# 
-# train <- o_train[inTrain,]
-# str(train)
-# valid <- o_train[-inTrain,]
-# rm(inTrain)
-# 
-#fwrite(train3, "./02preprocessing-data/train2.csv")
-
-
-
-## valid data dummy!
-# 
-# valid$fiberID = as.factor(valid$fiberID)
-# dummy_col2 = valid[,c("id","fiberID")]
-# 
-# dummy2 <- dummyVars(" ~ .", data=dummy_col2)
-# newdata2 <- data.frame(predict(dummy2, newdata = dummy_col2)) 
-# 
-# valid$fiberID = NULL
-# newdata2$id = NULL
-# 
-# valid = cbind(valid, newdata2)
-
-###############################################################
-
-
-#train %>% skim() %>% kable()
-
-# train %>% select(-type) %>% cor() %>% 
-#   corrplot.mixed(upper = "ellipse", tl.cex=.8, tl.pos = 'lt', number.cex = .8)
-
-# train %>% select(-type) %>%
-#   corrgram(lower.panel=panel.shade, upper.panel=panel.ellipse)
-
-
-
-
-
-
 
 
 ## 내부 검증
