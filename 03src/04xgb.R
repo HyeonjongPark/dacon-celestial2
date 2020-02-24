@@ -14,7 +14,7 @@ parameters <- list(
   
   # Booster Parameters
   eta                = 0.03,              
-  gamma              = 0.7,                 
+  gamma              = 2,                 
   max_depth          = 10,                
   min_child_weight   = 0.5,            
   subsample          = .8,                 
