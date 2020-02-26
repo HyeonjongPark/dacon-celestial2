@@ -14,9 +14,9 @@ parameters <- list(
   
   # Booster Parameters
   eta                = 0.03,              
-  gamma              = 2,                 
-  max_depth          = 10,                
-  min_child_weight   = 0.5,            
+  gamma              = 1,                 
+  max_depth          = 30,                
+  min_child_weight   = 1,            
   subsample          = .8,                 
   colsample_bytree   = .8,                
   colsample_bylevel  = 1,          
@@ -37,7 +37,7 @@ parameters <- list(
 
 parameters
 
-xgb_model <- xgb.train(parameters, data.train, nrounds = 1000)
+xgb_model <- xgb.train(parameters, data.train, nrounds = 1250)
 
 
 xgb_pred <- predict(xgb_model, data.valid)
@@ -98,7 +98,7 @@ xgb_pred_proba$id = o_test$id
 
 xgb_pred_proba = xgb_pred_proba[,c(20,1:19)]
 
-fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred13.csv")
+fwrite(xgb_pred_proba, "./06submission/xgb/xgb-pred14.csv")
 
 
 
