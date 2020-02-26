@@ -35,9 +35,9 @@ model1 = read_csv("D:/dacon-nuclearPower/lgb_400_1del11541168.csv")
 model2 = read_csv("D:/dacon-nuclearPower/submission-del11541168.csv")
 
 ensem = (model1[,2:ncol(model1)] + model2[,2:ncol(model2)] ) /2 
-ensem = (model1[,2:ncol(model1)] * 0.9 + model2[,2:ncol(model2)] * 0.1) 
+ensem = (model1[,2:ncol(model1)] * 0.835 + model2[,2:ncol(model2)] * 0.165) 
 ensem$id = model1$id
 
 ensem = ensem[,c(ncol(ensem),1:(ncol(ensem)-1))]
 ensem
-fwrite(ensem, "D:/dacon-nuclearPower/ensemdel11541168_10.csv")
+fwrite(ensem, "D:/dacon-nuclearPower/ensemdel11541168_12.csv")
